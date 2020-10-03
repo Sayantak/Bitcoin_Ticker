@@ -11,7 +11,7 @@ class PriceScreen extends StatefulWidget {
 class _PriceScreenState extends State<PriceScreen> {
   CoinData coinData = CoinData();
   String selectedCurrency = 'USD';
-  List<String> currencyValue = ['?', '?', '?'];
+  List<String> currencyValue = ['?', '?', '?', '?'];
   List<String> currencyData = [];
 
   DropdownButton<String> androidDropDown() {
@@ -61,7 +61,7 @@ class _PriceScreenState extends State<PriceScreen> {
   void getCurrencyData() async {
     currencyData = await coinData.getCoinData(selectedCurrency);
     setState(() {
-      for (int i = 0; i < 3; i++) {
+      for (int i = 0; i < 4; i++) {
         currencyValue[i] = currencyData[i];
       }
     });
@@ -71,7 +71,7 @@ class _PriceScreenState extends State<PriceScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(child: Text('🤑 Coin Ticker')),
+        title: Center(child: Text('Coin Ticker')),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -91,6 +91,11 @@ class _PriceScreenState extends State<PriceScreen> {
             currencyValue: currencyValue[2],
             selectedCurrency: selectedCurrency,
             cryptoCurrency: cryptoList[2],
+          ),
+          CurrencyCard(
+            currencyValue: currencyValue[3],
+            selectedCurrency: selectedCurrency,
+            cryptoCurrency: cryptoList[3],
           ),
           Container(
             height: 150.0,
@@ -119,15 +124,15 @@ class CurrencyCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.fromLTRB(18.0, 18.0, 18.0, 0),
+      padding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0),
       child: Card(
         color: Colors.lightBlueAccent,
         elevation: 5.0,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10.0),
+          borderRadius: BorderRadius.circular(15.0),
         ),
         child: Padding(
-          padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 28.0),
+          padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 30.0),
           child: Text(
             '1 $cryptoCurrency = $currencyValue $selectedCurrency',
             textAlign: TextAlign.center,
